@@ -63,7 +63,7 @@ Library
   -- Modules exported by the library.
   Exposed-modules: Graphics.Webcam.Linux
   Other-modules: Graphics.Webcam.Linux.Internal
-  ghc-options: -Odph -fno-liberate-case -funfolding-use-threshold1000 -funfolding-keeness-factor1000 -fllvm -optlo-O3
+  ghc-options: -O2 -fno-liberate-case -funfolding-use-threshold1000 -funfolding-keeness-factor1000 -fllvm -optlo-O3
   
   -- Packages needed in order to build this package.
   Build-depends: base == 4.*,
@@ -84,7 +84,7 @@ Library
   
 Executable example
         main-is: example.hs
-        ghc-options: -threaded -rtsopts -Odph -fno-liberate-case -funfolding-use-threshold1000 -funfolding-keeness-factor1000 -fllvm -optlo-O3
+        ghc-options: -threaded -rtsopts -O2 -fno-liberate-case -funfolding-use-threshold1000 -funfolding-keeness-factor1000 -fllvm -optlo-O3
         build-depends: gloss >= 1.7.2.1,
                        repa-v4l2 >= 0.1,
                        base == 4.*,
