@@ -40,6 +40,7 @@ module Graphics.Webcam.Linux.Internal
        , CamState (..)
        ) where
 
+import Prelude hiding (traverse)
 import Graphics.V4L2
 import qualified Data.Set as S (toList)
 import Data.List (sortBy,minimumBy)
