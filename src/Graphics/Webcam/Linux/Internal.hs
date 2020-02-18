@@ -45,6 +45,7 @@ import Graphics.V4L2
 import qualified Data.Set as S (toList)
 import Data.List (sortBy,minimumBy)
 import Data.Word
+import Control.Applicative
 import Control.Monad
 import Control.Monad.State
 import Control.Monad.Error
@@ -93,7 +94,7 @@ instance MonadTrans V4lCamT where
 instance MonadIO m => MonadIO (V4lCamT m) where
   liftIO = lift . liftIO
 
-
+instance Monad m => Applicative (V4lCamT m)
 instance Monad m => Monad (V4lCamT m) where
   f >>= g = V4lCamT $ unV4lCam f >>= (unV4lCam . g)
   return = V4lCamT . return
@@ -102,7 +103,7 @@ instance Monad m => Monad (V4lCamT m) where
 instance Monad m => Functor (V4lCamT m) where
   fmap f act = act >>= return . f
     
-               
+instance Monad m => Alternative (V4lCamT m)
 instance Monad m =>  MonadPlus (V4lCamT m) where
   mzero = V4lCamT $ mzero
   mplus (V4lCamT a) (V4lCamT b) = V4lCamT $ mplus a b
